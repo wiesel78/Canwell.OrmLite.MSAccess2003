@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://opensource.org/licenses/BSD-3-Clause</licenseUrl>
+    <projectUrl>https://github.com/wiesel78/Canwell.OrmLite.MSAccess2003</projectUrl>
+    <iconUrl>http://www.canwell.de/tl_files/canwell/gfx_logo.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>ms access 2003 adapter for servicestacks ormlite</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>access servicestack ormlite 2003 oledb</tags>
+  </metadata>
+</package>
