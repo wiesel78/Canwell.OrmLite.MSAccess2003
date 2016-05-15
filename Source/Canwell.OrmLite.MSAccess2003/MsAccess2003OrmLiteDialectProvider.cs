@@ -5,9 +5,10 @@ using System.Data.OleDb;
 using System.IO;
 using System.Linq;
 using System.Text;
-using ServiceStack.OrmLite.MSAccess2003.Extensions;
+using Canwell.OrmLite.MSAccess2003.Extensions;
+using ServiceStack.OrmLite;
 
-namespace ServiceStack.OrmLite.MSAccess2003
+namespace Canwell.OrmLite.MSAccess2003
 {
     public class MsAccess2003OrmLiteDialectProvider : OrmLiteDialectProviderBase<MsAccess2003OrmLiteDialectProvider>
     {

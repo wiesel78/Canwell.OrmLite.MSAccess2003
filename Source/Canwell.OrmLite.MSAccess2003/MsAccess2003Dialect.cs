@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ServiceStack.OrmLite;
 
-namespace ServiceStack.OrmLite.MSAccess2003
+namespace Canwell.OrmLite.MSAccess2003
 {
     public static class MsAccess2003Dialect
     {

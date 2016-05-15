@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ServiceStack.DataAnnotations;
+﻿using ServiceStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.MSAccess2003Host.Entitites
+namespace Canwell.OrmLite.MSAccess2003Host.Entitites
 {
     [Alias("TBL_Gruppen")]
     public class GruppenEntity

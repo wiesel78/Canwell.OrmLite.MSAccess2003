@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Canwell.OrmLite.MSAccess2003Host.Dtos;
 using ServiceStack.DataAnnotations;
-using ServiceStack.OrmLite.MSAccess2003Host.Dtos;
 
-namespace ServiceStack.OrmLite.MSAccess2003Host.Entitites
+namespace Canwell.OrmLite.MSAccess2003Host.Entitites
 {
     [Alias("ExtendedTypes")]
     public class ExtendedTypesEntity

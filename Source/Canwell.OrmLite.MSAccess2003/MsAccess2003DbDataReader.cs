@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Linq;
-using System.Text;
 
-namespace ServiceStack.OrmLite.MSAccess2003
+namespace Canwell.OrmLite.MSAccess2003
 {
     public class MsAccess2003DbDataReader : IDataReader
     {

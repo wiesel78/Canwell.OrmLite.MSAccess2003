@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.OleDb;
-using System.Linq;
-using System.Text;
+using Canwell.OrmLite.MSAccess2003;
+using Canwell.OrmLite.MSAccess2003Host.Dtos;
+using Canwell.OrmLite.MSAccess2003Host.Entitites;
 using Funq;
-using ServiceStack.OrmLite.MSAccess2003;
-using ServiceStack.OrmLite.MSAccess2003Host.Dtos;
-using ServiceStack.OrmLite.MSAccess2003Host.Entitites;
+using ServiceStack.OrmLite;
 using ServiceStack.Text;
 
-namespace ServiceStack.OrmLite.MSAccess2003Host
+namespace Canwell.OrmLite.MSAccess2003Host
 {
     class Program
     {

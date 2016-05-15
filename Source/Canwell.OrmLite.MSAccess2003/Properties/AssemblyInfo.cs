@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die mit einer Assembly verknüpft sind.
-[assembly: AssemblyTitle("ServiceStack.OrmLite.MSAccess2003")]
+[assembly: AssemblyTitle("Canwell.OrmLite.MSAccess2003")]
 [assembly: AssemblyDescription("ServiceStack.OrmLite adapter for Access2003 Databases")]
 [assembly: AssemblyConfiguration("")]
 

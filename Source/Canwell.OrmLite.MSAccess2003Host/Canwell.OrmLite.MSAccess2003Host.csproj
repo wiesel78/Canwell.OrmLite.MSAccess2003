@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C223D140-B295-4F6D-B5D9-08ED0AF36F5A}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{40F08BA3-C6F0-4B1D-BAAB-5DCA1476BF86}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceStack.OrmLite.MSAccess2003</RootNamespace>
-    <AssemblyName>ServiceStack.OrmLite.MSAccess2003</AssemblyName>
+    <RootNamespace>Canwell.OrmLite.MSAccess2003Host</RootNamespace>
+    <AssemblyName>Canwell.OrmLite.MSAccess2003Host</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>4fbe95d1</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,9 +21,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -90,45 +90,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\IDbCommandExtensions.cs" />
-    <Compile Include="Extensions\IDbConnectionFactoryExtensions.cs" />
-    <Compile Include="MsAccess2003DbCommand.cs" />
-    <Compile Include="MsAccess2003DbConnection.cs" />
-    <Compile Include="MsAccess2003DbDataParameter.cs" />
-    <Compile Include="MsAccess2003DbDataParameterCollection.cs" />
-    <Compile Include="MsAccess2003DbDataReader.cs" />
-    <Compile Include="MsAccess2003DbTransaction.cs" />
-    <Compile Include="MsAccess2003Dialect.cs" />
-    <Compile Include="MsAccess2003OrmLiteDialectProvider.cs" />
-    <Compile Include="MsAccess2003SqlExpressionVisitor.cs" />
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Dtos\TestObject.cs" />
+    <Compile Include="Entitites\AutoIncrementEntity.cs" />
+    <Compile Include="Entitites\ExtendedTypesEntity.cs" />
+    <Compile Include="Entitites\GruppenEntity.cs" />
+    <Compile Include="Entitites\TypeEntity.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="ADOX">
-      <Guid>{00000600-0000-0010-8000-00AA006D2EA4}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
+    <ProjectReference Include="..\Canwell.OrmLite.MSAccess2003\Canwell.OrmLite.MSAccess2003.csproj">
+      <Project>{c223d140-b295-4f6d-b5d9-08ed0af36f5a}</Project>
+      <Name>Canwell.OrmLite.MSAccess2003</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\MSBuildTasks.1.5.0.183\build\MSBuildTasks.targets" Condition="Exists('..\packages\MSBuildTasks.1.5.0.183\build\MSBuildTasks.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\MSBuildTasks.1.5.0.183\build\MSBuildTasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuildTasks.1.5.0.183\build\MSBuildTasks.targets'))" />
-  </Target>  
-  <Target Name="AfterBuild">
-    <WebDownload Condition="!Exists('nuget.exe')" Filename="nuget.exe" FileUri="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
-    <Exec Command="nuget pack ServiceStack.OrmLite.MSAccess2003.csproj -Prop Configuration=Release -Prop Platform=x86">
-    </Exec>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
   </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

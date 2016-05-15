@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.OleDb;
-using System.Linq;
-using System.Text;
+﻿using System.Data.OleDb;
+using ServiceStack.OrmLite;
 
-namespace ServiceStack.OrmLite.MSAccess2003.Extensions
+namespace Canwell.OrmLite.MSAccess2003.Extensions
 {
     public static class IDbConnectionFactoryExtensions
     {

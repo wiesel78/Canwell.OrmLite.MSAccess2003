@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
 using ServiceStack.DataAnnotations;
 
-namespace ServiceStack.OrmLite.MSAccess2003Host.Entitites
+namespace Canwell.OrmLite.MSAccess2003Host.Entitites
 {
     [Alias("TestTypeTable")]
     public class TypeEntity
