@@ -11,7 +11,6 @@ var MainSln = string.Format("{0}/ServiceStack.OrmLite.sln", MainDir);
 var BuildDir = "../Build";
 var SourceDirectory = string.Format("{0}/Canwell.BistroWebServer.ServerHost/bin/x86/Release", MainDir);
 var DestinationDirectory = string.Format("{0}/{1}", BuildDir, ProjectName);
-
 var SourceToolsDirectory = "../Tools";
 var BuildToolsDirectory = BuildDir + "/Tools";
 
