@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5B8B01D0-08E2-4898-A741-3D8BD327252D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Canwell.OrmLite.MSAccess2003Tests</RootNamespace>
+    <AssemblyName>Canwell.OrmLite.MSAccess2003Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.1\lib\net35\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.9.71\lib\net35\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Redis.3.9.71\lib\net35\ServiceStack.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.3.9.71\lib\net35\ServiceStack.ServiceInterface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CreateDatabaseTests.cs" />
+    <Compile Include="Mock\Settings\ConnectionStringEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Canwell.OrmLite.MSAccess2003\Canwell.OrmLite.MSAccess2003.csproj">
+      <Project>{c223d140-b295-4f6d-b5d9-08ed0af36f5a}</Project>
+      <Name>Canwell.OrmLite.MSAccess2003</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
