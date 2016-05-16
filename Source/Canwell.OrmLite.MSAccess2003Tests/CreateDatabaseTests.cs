@@ -17,28 +17,25 @@ namespace Canwell.OrmLite.MSAccess2003Tests
     {
         private static string FilePath = @".\test.mdb";
         private static string Password = "passme";
+        private Container Container { get; set; }
 
         [SetUp]
         public void SetUp()
         {
+            Container = new Container();
         }
 
         [Test]
         public void CreateDatabase_FileNotExist_CreatedWithPassword()
         {
-            var container = new Container();
-
-            container.Register<IDbConnectionFactory>(new OrmLiteConnectionFactory(
+            Container.Register<IDbConnectionFactory>(new OrmLiteConnectionFactory(
                 ConnectionStringEnum.WithPassword.Fmt(FilePath, Password),
-                new MsAccess2003OrmLiteDialectProvider()
+                MsAccess2003Dialect.Provider
             ));
 
-            var db = container.Resolve<IDbConnectionFactory>();
+            var db = Container.Resolve<IDbConnectionFactory>();
 
-            using (var connection = db.CreateDbConnection())
-            {
-                Assert.IsTrue(File.Exists(FilePath));   
-            }
+            Assert.IsTrue(File.Exists(FilePath));
         }
 
         [TearDown]
@@ -46,6 +43,8 @@ namespace Canwell.OrmLite.MSAccess2003Tests
         {
             if(File.Exists(FilePath))
                 File.Delete(FilePath);
+
+            Container.Dispose();
         }
     }
 }
