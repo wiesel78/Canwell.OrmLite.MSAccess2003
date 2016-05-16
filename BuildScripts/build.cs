@@ -1,18 +1,15 @@
 ﻿
 var target = Argument("target", "Compress");
 var configuration = Argument("configuration", "Release");
-var ProjectName = "BistroWebServer";
+var ProjectName = "Canwell.OrmLite";
 
 var Tools = "../Tools";
 
 var MainDir = "../Source";
-var MainSln = string.Format("{0}/ServiceStack.OrmLite.sln", MainDir);
+var MainSln = string.Format("{0}/Canwell.OrmLite.sln", MainDir);
 
 var BuildDir = "../Build";
-var SourceDirectory = string.Format("{0}/Canwell.BistroWebServer.ServerHost/bin/x86/Release", MainDir);
-var DestinationDirectory = string.Format("{0}/{1}", BuildDir, ProjectName);
 var SourceToolsDirectory = "../Tools";
-var BuildToolsDirectory = BuildDir + "/Tools";
 
 var AssemblyInfoPath = string.Format("{0}/GlobalAssemblyInfo.cs", MainDir);
 
@@ -23,18 +20,13 @@ string Version = "0.0.0.0";
 
 // Bereinigen
 Task("Clean").Does(() =>
-	{	
+	{
+		if(!DirectoryExists(BuildDir))
+			CreateDirectory(BuildDir);
+	
 		CleanDirectories(string.Format("{0}/Canwell.*/**/{1}", MainDir, configuration));
 		CleanDirectories(string.Format("{0}/", BuildDir));
 		DeleteFiles(string.Format("{0}/*/*.nupkg", MainDir));
-		
-		if(DirectoryExists(DestinationDirectory))
-		{
-			CleanDirectory(DestinationDirectory);
-		}
-		
-		if(!DirectoryExists(DestinationDirectory))
-			CreateDirectory(DestinationDirectory);
 	});
 
 // Versionsnummer inkrementieren
@@ -162,7 +154,7 @@ Task("Publish-Nuget-Packages")
 		ToolPath = NugetToolPath
 	};
 	
-	var files = GetFiles(string.Format("{0}/ServiceStack.*/*.nupkg", MainDir));
+	var files = GetFiles(string.Format("{0}/Canwell.*/*.nupkg", MainDir));
 	
 	foreach(var file in files)
 	{
