@@ -58,6 +58,10 @@ namespace Canwell.OrmLite.MSAccess2003Tests
 
         [TestCase(typeof(NumberTableEntity))]
         [TestCase(typeof(TextTableEntity))]
+        [TestCase(typeof(TimeTableEntity))]
+        [TestCase(typeof(GuidTableEntity))]
+        [TestCase(typeof(NullableTableEntity))]
+        [TestCase(typeof(AnnotationTableEntity))]
         public void CreateTableIfNotExists_TableNotExist_TableCreated(Type entity)
         {
             using (var connection = Container.Resolve<IDbConnectionFactory>().OpenDbConnection())
@@ -70,6 +74,10 @@ namespace Canwell.OrmLite.MSAccess2003Tests
 
         [TestCase(typeof(NumberTableEntity))]
         [TestCase(typeof(TextTableEntity))]
+        [TestCase(typeof(TimeTableEntity))]
+        [TestCase(typeof(GuidTableEntity))]
+        [TestCase(typeof(NullableTableEntity))]
+        [TestCase(typeof(AnnotationTableEntity))]
         public void CreateTable_TableNotExist_TableCreated(Type entity)
         {
             using (var connection = Container.Resolve<IDbConnectionFactory>().OpenDbConnection())
@@ -77,6 +85,30 @@ namespace Canwell.OrmLite.MSAccess2003Tests
                 connection.CreateTable(false,entity);
 
                 Assert.IsTrue(connection.TableExists(AttributeUtilities.GetAlias(entity)));
+            }
+        }
+
+        [Test]
+        public void CreateTables_TableNotExist_TableCreated()
+        {
+            using (var connection = Container.Resolve<IDbConnectionFactory>().OpenDbConnection())
+            {
+                connection.CreateTables(false, new Type[]
+                {
+                    typeof(NumberTableEntity),
+                    typeof(TextTableEntity),
+                    typeof(TimeTableEntity),
+                    typeof(GuidTableEntity),
+                    typeof(NullableTableEntity),
+                    typeof(AnnotationTableEntity)
+                });
+
+                Assert.IsTrue(connection.TableExists(AttributeUtilities.GetAlias<NumberTableEntity>()));
+                Assert.IsTrue(connection.TableExists(AttributeUtilities.GetAlias<TextTableEntity>()));
+                Assert.IsTrue(connection.TableExists(AttributeUtilities.GetAlias<TimeTableEntity>()));
+                Assert.IsTrue(connection.TableExists(AttributeUtilities.GetAlias<GuidTableEntity>()));
+                Assert.IsTrue(connection.TableExists(AttributeUtilities.GetAlias<NullableTableEntity>()));
+                Assert.IsTrue(connection.TableExists(AttributeUtilities.GetAlias<AnnotationTableEntity>()));
             }
         }
 

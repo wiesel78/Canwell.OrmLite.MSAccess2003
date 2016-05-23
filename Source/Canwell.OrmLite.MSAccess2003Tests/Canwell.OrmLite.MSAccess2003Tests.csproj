@@ -80,8 +80,12 @@
     </Compile>
     <Compile Include="CreateDatabaseTests.cs" />
     <Compile Include="CreateTableTests.cs" />
+    <Compile Include="Entity\AnnotationTableEntity.cs" />
+    <Compile Include="Entity\GuidTableEntity.cs" />
+    <Compile Include="Entity\NullableTableEntity.cs" />
     <Compile Include="Entity\NumberTableEntity.cs" />
     <Compile Include="Entity\TextTableEntity.cs" />
+    <Compile Include="Entity\TimeTableEntity.cs" />
     <Compile Include="InsertTests.cs" />
     <Compile Include="Mock\Settings\ConnectionStringEnum.cs" />
     <Compile Include="Mock\Settings\TableList.cs" />

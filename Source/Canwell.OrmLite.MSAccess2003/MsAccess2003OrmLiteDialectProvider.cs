@@ -24,6 +24,8 @@ namespace Canwell.OrmLite.MSAccess2003
             base.StringColumnDefinition = "TEXT";
             base.BoolColumnDefinition = "YESNO";
             base.BlobColumnDefinition = "TEXT";
+            base.TimeColumnDefinition = "TEXT";
+            base.DefaultValueFormat = " DEFAULT {0}";
             
             base.LongColumnDefinition = base.IntColumnDefinition;
 
@@ -92,7 +94,8 @@ namespace Canwell.OrmLite.MSAccess2003
         {
             if (fieldType == typeof(Guid))
             {
-                return string.Format("{0}{1}{2}", "{", value, "}");
+                if(value != null)
+                    return string.Format("{0}{1}{2}", "{", value, "}");
             }
 
             return base.GetQuotedValue(value, fieldType);
