@@ -78,9 +78,12 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AddColumnTests.cs" />
     <Compile Include="CreateDatabaseTests.cs" />
     <Compile Include="CreateTableTests.cs" />
     <Compile Include="Entity\AnnotationTableEntity.cs" />
+    <Compile Include="Entity\BasicColumnTableEntity.cs" />
+    <Compile Include="Entity\ExtendedColumnTableEntity.cs" />
     <Compile Include="Entity\GuidTableEntity.cs" />
     <Compile Include="Entity\NullableTableEntity.cs" />
     <Compile Include="Entity\NumberTableEntity.cs" />

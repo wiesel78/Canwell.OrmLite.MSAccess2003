@@ -8,10 +8,16 @@ namespace Canwell.OrmLite.MSAccess2003Tests.Mock.Settings
 {
     public static class TableList
     {
-        public static Type[] Types = new Type[]
+        public static readonly Type[] Types = new Type[]
         {
             typeof(NumberTableEntity),
-            typeof(TextTableEntity)
+            typeof(TimeTableEntity),
+            typeof(TextTableEntity),
+            typeof(NullableTableEntity),
+            typeof(GuidTableEntity),
+            typeof(ExtendedColumnTableEntity),
+            typeof(BasicColumnTableEntity),
+            typeof(AnnotationTableEntity)
         };
     }
 }
