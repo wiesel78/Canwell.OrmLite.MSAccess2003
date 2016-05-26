@@ -24,11 +24,9 @@ namespace Canwell.OrmLite.MSAccess2003Host
             container.Register<IDbConnectionFactory>(new OrmLiteConnectionFactory(ConnectionString,
                 MsAccess2003Dialect.Provider));
 
-            // switch between native sql over oledb and OrmLiteAbstractionLayer
-            if(false)
-                OledDbCommand(container);
-            else
-                OrmLiteCommand(container);
+            
+            //OledDbCommand(container);
+            OrmLiteCommand(container);
 
             BlockInput();
         }
