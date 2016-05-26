@@ -17,7 +17,8 @@ namespace Canwell.OrmLite.MSAccess2003Tests.Mock.Settings
             typeof(GuidTableEntity),
             typeof(ExtendedColumnTableEntity),
             typeof(BasicColumnTableEntity),
-            typeof(AnnotationTableEntity)
+            typeof(AnnotationTableEntity),
+            typeof(OptionTableEntity)
         };
     }
 }

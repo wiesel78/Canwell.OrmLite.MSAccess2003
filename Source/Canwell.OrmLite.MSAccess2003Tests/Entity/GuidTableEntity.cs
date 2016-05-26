@@ -10,5 +10,6 @@ namespace Canwell.OrmLite.MSAccess2003Tests.Entity
     public class GuidTableEntity
     {
         public Guid GuidColumn { get; set; }
+        public string Name { get; set; }
     }
 }

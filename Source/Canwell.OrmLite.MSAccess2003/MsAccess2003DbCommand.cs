@@ -90,7 +90,7 @@ namespace Canwell.OrmLite.MSAccess2003
             }
             set
             {
-                Command.Transaction = (OleDbTransaction)value;
+                Command.Transaction = value == null ? null : ((MsAccess2003DbTransaction)value).Transaction;
             }
         }
 

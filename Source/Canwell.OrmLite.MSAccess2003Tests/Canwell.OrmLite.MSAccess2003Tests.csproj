@@ -87,12 +87,19 @@
     <Compile Include="Entity\GuidTableEntity.cs" />
     <Compile Include="Entity\NullableTableEntity.cs" />
     <Compile Include="Entity\NumberTableEntity.cs" />
+    <Compile Include="Entity\OptionTableEntity.cs" />
+    <Compile Include="Entity\ReferenceTableEntity.cs" />
     <Compile Include="Entity\TextTableEntity.cs" />
     <Compile Include="Entity\TimeTableEntity.cs" />
+    <Compile Include="FirstTests.cs" />
     <Compile Include="InsertTests.cs" />
     <Compile Include="Mock\Settings\ConnectionStringEnum.cs" />
     <Compile Include="Mock\Settings\TableList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Enums\TestValuesEnum.cs" />
+    <Compile Include="SaveTests.cs" />
+    <Compile Include="SelectTests.cs" />
+    <Compile Include="UpdateTests.cs" />
     <Compile Include="Utilities\AttributeUtilities.cs" />
     <Compile Include="Utilities\FileUtilities.cs" />
   </ItemGroup>

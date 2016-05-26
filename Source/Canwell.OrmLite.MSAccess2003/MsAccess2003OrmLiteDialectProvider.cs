@@ -97,6 +97,14 @@ namespace Canwell.OrmLite.MSAccess2003
                 if(value != null)
                     return string.Format("{0}{1}{2}", "{", value, "}");
             }
+            else if (fieldType == typeof(DateTime))
+            {
+                if (value != null)
+                {
+                    var d = ((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss");
+                    return string.Format("{0}{1}{0}", "#", d);
+                }
+            }
 
             return base.GetQuotedValue(value, fieldType);
         }
@@ -188,5 +196,6 @@ namespace Canwell.OrmLite.MSAccess2003
             else
                 return " "+ AutoIncrementDefinition +" ";
         }
+
     }
 }

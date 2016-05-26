@@ -7,6 +7,8 @@ from the Com-Section in the Reference-Manager. In the Reference-Section of
 your project, find you the Library ADOX. Click on it and see the Properties. 
 Set the Property Interop-Type-Embedded of false and local copy of true.
 
+Install "System.ComponentModel.DataAnnotations" from COM-Section
+
 Install Canwell.OrmLite.MSAccess2003 via Nuget
 
 ##
