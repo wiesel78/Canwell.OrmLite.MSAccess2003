@@ -52,6 +52,7 @@ namespace Canwell.OrmLite.MSAccess2003Tests
             {
                 connection.CreateTableIfNotExists<OptionTableEntity>();
                 connection.CreateTableIfNotExists<ReferenceTableEntity>();
+                connection.CreateTableIfNotExists<PrimaryGuidEntity>();
 
                 connection.Insert<OptionTableEntity>(new OptionTableEntity[]
                 {
@@ -73,6 +74,7 @@ namespace Canwell.OrmLite.MSAccess2003Tests
             {
                 connection.DropTable<ReferenceTableEntity>();
                 connection.DropTable<OptionTableEntity>();
+                connection.DropTable<PrimaryGuidEntity>();
             }
         }
 
@@ -131,6 +133,30 @@ namespace Canwell.OrmLite.MSAccess2003Tests
                 Assert.AreEqual(entitiesSaved.Count, 2);
                 Assert.AreEqual(entitiesSaved[0].Name, "ReferenceNameSave1");
                 Assert.AreEqual(entitiesSaved[1].Name, "ReferenceNameSave2");
+            }
+        }
+
+        [Test]
+        public void SaveAll_EmptyPrimaryGuidTable_FillWithGuidIsSetEntities()
+        {
+            using (var connection = Container.Resolve<IDbConnectionFactory>().OpenDbConnection())
+            {
+
+                var entities = new List<PrimaryGuidEntity>()
+                {
+                    new PrimaryGuidEntity()
+                    {
+                        Id = Guid.NewGuid(),
+                        UserName = "Philip"
+                    },
+                    new PrimaryGuidEntity()
+                    {
+                        Id = Guid.NewGuid(),
+                        UserName = "Peter"
+                    }
+                };
+
+                Assert.DoesNotThrow(() => connection.SaveAll<PrimaryGuidEntity>(entities));
             }
         }
     }

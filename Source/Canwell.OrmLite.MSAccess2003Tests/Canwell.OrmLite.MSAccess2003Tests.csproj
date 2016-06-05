@@ -88,6 +88,7 @@
     <Compile Include="Entity\NullableTableEntity.cs" />
     <Compile Include="Entity\NumberTableEntity.cs" />
     <Compile Include="Entity\OptionTableEntity.cs" />
+    <Compile Include="Entity\PrimaryGuidEntity.cs" />
     <Compile Include="Entity\ReferenceTableEntity.cs" />
     <Compile Include="Entity\TextTableEntity.cs" />
     <Compile Include="Entity\TimeTableEntity.cs" />

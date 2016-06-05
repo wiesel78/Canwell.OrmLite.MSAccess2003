@@ -13,22 +13,25 @@ namespace Canwell.OrmLite.MSAccess2003Host
     class Program
     {
         private static string FilePath = @".\test.mdb";
-        static string ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Mode=Share Deny None;Jet OLEDB:Database Password=passme";
+        private static string FilePassword = "passme";
+
+        static string ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Mode=Share Deny None;Jet OLEDB:Database Password={1}";
+        //static string ConnectionString = ":memory:";
 
         static void Main(string[] args)
         {
-            ConnectionString = ConnectionString.Fmt(FilePath);
+            ConnectionString = ConnectionString.Fmt(FilePath, FilePassword);
 
             var container = new Container();
 
             container.Register<IDbConnectionFactory>(new OrmLiteConnectionFactory(ConnectionString,
                 MsAccess2003Dialect.Provider));
+            //container.Register<IDbConnectionFactory>(new OrmLiteConnectionFactory(ConnectionString,
+            //    SqliteDialect.Provider));
 
-            
-            //OledDbCommand(container);
             OrmLiteCommand(container);
 
-            BlockInput();
+            //BlockInput();
         }
 
         static void BlockInput()
@@ -41,80 +44,39 @@ namespace Canwell.OrmLite.MSAccess2003Host
 
         static void OrmLiteCommand(Container container)
         {
-            var dbFactory = container.Resolve<IDbConnectionFactory>();
-
-            using (var db = dbFactory.OpenDbConnection())
+            using(var connection = container.Resolve<IDbConnectionFactory>().OpenDbConnection())
             {
-                db.CreateTableIfNotExists<ExtendedTypesEntity>();
+                connection.DropAndCreateTable<GuidEntity>();
 
-                var entity = new ExtendedTypesEntity()
+                var entities = new List<GuidEntity>()
                 {
-                    Id = Guid.NewGuid(),
-                    BinaryColumn = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
-                    StringColumn = new string[] { "asd", "sss", "aaa" },
-                    TestObjectColumn = new TestObject()
+                    new GuidEntity()
                     {
-                        BooleanField = true,
-                        StringField = "bla"
+                        Id = Guid.NewGuid(),
+                        UserName = "Phil"
+                    },
+                    new GuidEntity()
+                    {
+                        Id = Guid.NewGuid(),
+                        UserName = "Philip"
                     }
                 };
 
-                db.Insert<ExtendedTypesEntity>(entity);
-
-                var afterInsertEntity = db.Select<ExtendedTypesEntity>(s => s.Id == entity.Id)[0];
-
-                Console.WriteLine("after insert : {0}", afterInsertEntity.BinaryColumn.Length);
-
-                entity.BinaryColumn = new byte[] { 9, 8, 7 };
-                entity.StringColumn = new string[] { "z" };
-                entity.TestObjectColumn = new TestObject()
+                try
                 {
-                    BooleanField = false,
-                    StringField = "blub"
-                };
 
-                db.Update<ExtendedTypesEntity>(entity);
+                    connection.SaveAll<GuidEntity>(entities);
 
-                var afterUpdateEntity = db.Select<ExtendedTypesEntity>(s => s.Id == entity.Id)[0];
 
-                Console.WriteLine("after update : {0}", afterUpdateEntity.BinaryColumn.Length);
-            }
-        }
-
-        static void OledDbCommand(Container container )
-        {
-            var ormConnectionFactory = container.Resolve<IDbConnectionFactory>() as OrmLiteConnectionFactory;
-            var ormConnection = ormConnectionFactory.CreateDbConnection() as OrmLiteConnection;
-            var accessConnection = ormConnection.DbConnection as MsAccess2003DbConnection;
-            var connection = accessConnection.Connection;
-
-            connection.Open();
-
-            using (var command = connection.CreateCommand())
-            {
-                var id = Guid.NewGuid().ToString();
-
-                command.CommandText =
-                    "INSERT INTO `TestTypeTable` (`Id`,`CharColumn`,`TextColumn`,`BooleanColumn`,`ByteColumn`,`ShortColumn`,`IntegerColumn`,`LongIntegerColumn`,`DoubleColumn`,`DateColumn`) VALUES ('{" + id + "}','a','Hallo Welt',FALSE,1,100,3000,3000,2.3,'14.05.2016 19:02:53')";
-                command.ExecuteNonQuery();
-
-                command.CommandText =
-                    "UPDATE TestTypeTable SET BooleanColumn = FALSE \nWHERE `Id` = '{"+id+"}';";
-                command.ExecuteNonQuery();
-
-                command.CommandText = "SELECT `Id` ,`CharColumn` ,`TextColumn` ,`BooleanColumn` ,`ByteColumn` ,`ShortColumn` ,`IntegerColumn` ,`LongIntegerColumn` ,`DoubleColumn` ,`DateColumn`  \nFROM `TestTypeTable` \nWHERE `Id` = '{"+id+"}';";
-                var reader = command.ExecuteReader(CommandBehavior.Default);
-                var result = new List<TypeEntity>();
-
-                while (reader.Read())
-                {
-                    var value = reader[3];
-
-                    Console.WriteLine("{0}", value);
                 }
-            }
+                catch (Exception e)
+                {
 
-            connection.Close();
+                    Console.WriteLine("asdasd {0}", e.Message);
+                    
+                }
+
+            }
         }
     }
 }

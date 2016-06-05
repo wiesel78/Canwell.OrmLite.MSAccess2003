@@ -94,8 +94,8 @@ namespace Canwell.OrmLite.MSAccess2003
         {
             if (fieldType == typeof(Guid))
             {
-                if(value != null)
-                    return string.Format("{0}{1}{2}", "{", value, "}");
+                if (value != null)
+                    return string.Format("{0}{1}{2}", "#'", value.ToString(), "'#");
             }
             else if (fieldType == typeof(DateTime))
             {

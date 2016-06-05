@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.OleDb;
+using ServiceStack.Common;
 
 namespace Canwell.OrmLite.MSAccess2003
 {
@@ -20,7 +21,10 @@ namespace Canwell.OrmLite.MSAccess2003
         public string CommandText
         {
             get { return Command.CommandText; }
-            set { Command.CommandText = value; }
+            set
+            {
+                Command.CommandText = value.ReplaceAll("#'", "{").ReplaceAll("'#", "}");
+            }
         }
 
         public int CommandTimeout
