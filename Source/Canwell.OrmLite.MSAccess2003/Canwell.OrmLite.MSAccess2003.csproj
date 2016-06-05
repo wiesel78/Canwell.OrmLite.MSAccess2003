@@ -104,7 +104,6 @@
     <Compile Include="MsAccess2003Dialect.cs" />
     <Compile Include="MsAccess2003OrmLiteDialectProvider.cs" />
     <Compile Include="MsAccess2003SqlExpressionVisitor.cs" />
-    <Compile Include="OrmLitePersistenceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
