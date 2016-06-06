@@ -46,26 +46,39 @@ namespace Canwell.OrmLite.MSAccess2003Host
         {
             using(var connection = container.Resolve<IDbConnectionFactory>().OpenDbConnection())
             {
-                connection.DropAndCreateTable<GuidEntity>();
 
-                var entities = new List<GuidEntity>()
+                var entities = new List<MessageEntity>()
                 {
-                    new GuidEntity()
+                    new MessageEntity()
                     {
-                        Id = Guid.NewGuid(),
-                        UserName = "Phil"
+                        Message_id = Guid.NewGuid(),
+                        UserName = "Philip",
+                        CreateDate = DateTime.Now,
+                        MessageState = 2,
+                        MessageSource = "hallo, die ist eine email",
+                        MessageSourcePlain = "hallo blablabla," ,
+                        MessageSubject = "betreff und so",
+                        MessageType = "EMAILNEWSLETTER",
+                        Recipient = "wurst78@gmail.com"
                     },
-                    new GuidEntity()
+                    new MessageEntity()
                     {
-                        Id = Guid.NewGuid(),
-                        UserName = "Philip"
-                    }
+                        Message_id = Guid.NewGuid(),
+                        UserName = "Philip2",
+                        CreateDate = DateTime.Now,
+                        MessageState = 2,
+                        MessageSource = "hallo, die ist eine email2",
+                        MessageSourcePlain = "hallo blablabla2," ,
+                        MessageSubject = "betreff und so2",
+                        MessageType = "EMAILNEWSLETTER",
+                        Recipient = "wurst78@gmail.com"
+                    },
                 };
 
                 try
                 {
 
-                    connection.SaveAll<GuidEntity>(entities);
+                    connection.SaveAll<MessageEntity>(entities);
 
 
                 }
