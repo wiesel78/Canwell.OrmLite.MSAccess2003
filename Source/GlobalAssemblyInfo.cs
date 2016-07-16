@@ -6,8 +6,8 @@
 using System.Reflection;
 
 [assembly: AssemblyCompany("canwell - IT Solutions")]
-[assembly: AssemblyVersion("3.9.71.8")]
-[assembly: AssemblyFileVersion("3.9.71.8")]
-[assembly: AssemblyInformationalVersion("3.9.71.8")]
+[assembly: AssemblyVersion("3.9.71.9")]
+[assembly: AssemblyFileVersion("3.9.71.9")]
+[assembly: AssemblyInformationalVersion("3.9.71.9")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 
