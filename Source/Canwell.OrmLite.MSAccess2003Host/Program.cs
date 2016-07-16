@@ -46,48 +46,9 @@ namespace Canwell.OrmLite.MSAccess2003Host
         {
             using(var connection = container.Resolve<IDbConnectionFactory>().OpenDbConnection())
             {
+                connection.CreateTableIfNotExists<MessageEntity>();
 
-                var entities = new List<MessageEntity>()
-                {
-                    new MessageEntity()
-                    {
-                        Message_id = Guid.NewGuid(),
-                        UserName = "Philip",
-                        CreateDate = DateTime.Now,
-                        MessageState = 2,
-                        MessageSource = "hallo, die ist eine email",
-                        MessageSourcePlain = "hallo blablabla," ,
-                        MessageSubject = "betreff und so",
-                        MessageType = "EMAILNEWSLETTER",
-                        Recipient = "wurst78@gmail.com"
-                    },
-                    new MessageEntity()
-                    {
-                        Message_id = Guid.NewGuid(),
-                        UserName = "Philip2",
-                        CreateDate = DateTime.Now,
-                        MessageState = 2,
-                        MessageSource = "hallo, die ist eine email2",
-                        MessageSourcePlain = "hallo blablabla2," ,
-                        MessageSubject = "betreff und so2",
-                        MessageType = "EMAILNEWSLETTER",
-                        Recipient = "wurst78@gmail.com"
-                    },
-                };
-
-                try
-                {
-
-                    connection.SaveAll<MessageEntity>(entities);
-
-
-                }
-                catch (Exception e)
-                {
-
-                    Console.WriteLine("asdasd {0}", e.Message);
-                    
-                }
+                connection.AlterColumn<MessageEntity>(entity => entity.MessageSource);
 
             }
         }

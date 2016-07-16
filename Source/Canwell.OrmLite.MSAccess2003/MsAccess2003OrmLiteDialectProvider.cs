@@ -35,9 +35,11 @@ namespace Canwell.OrmLite.MSAccess2003
         public override IDbConnection CreateConnection(string filePath, Dictionary<string, string> options)
         {
             var path = GetFilePath(filePath);
+            var autoCreate = options != null ? !options.ContainsKey("AutoCreateDatabase") || bool.Parse(options["AutoCreateDatabase"]) : true;
+
 
             // create mdb if filePath mdb is not exist
-            if (!File.Exists(path))
+            if (!File.Exists(path) && autoCreate)
             {
                 var cat = new ADOX.CatalogClass();
                 cat.Create(filePath);

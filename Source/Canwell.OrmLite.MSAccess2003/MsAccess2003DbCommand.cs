@@ -23,7 +23,7 @@ namespace Canwell.OrmLite.MSAccess2003
             get { return Command.CommandText; }
             set
             {
-                Command.CommandText = value.ReplaceAll("#'", "{").ReplaceAll("'#", "}");
+                Command.CommandText = value.ReplaceAll("#'", "{").ReplaceAll("'#", "}").ReplaceAll("MODIFY COLUMN", "ALTER COLUMN");
             }
         }
 
