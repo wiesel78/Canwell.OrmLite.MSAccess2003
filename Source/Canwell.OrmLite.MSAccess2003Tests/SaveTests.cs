@@ -146,12 +146,10 @@ namespace Canwell.OrmLite.MSAccess2003Tests
                 {
                     new PrimaryGuidEntity()
                     {
-                        Id = Guid.NewGuid(),
                         UserName = "Philip"
                     },
                     new PrimaryGuidEntity()
                     {
-                        Id = Guid.NewGuid(),
                         UserName = "Peter"
                     }
                 };

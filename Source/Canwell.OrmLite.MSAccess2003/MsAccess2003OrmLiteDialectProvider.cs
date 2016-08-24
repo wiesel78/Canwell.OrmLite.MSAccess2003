@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Canwell.OrmLite.MSAccess2003.Extensions;
+using ServiceStack.Common;
 using ServiceStack.OrmLite;
 
 namespace Canwell.OrmLite.MSAccess2003
@@ -35,7 +36,7 @@ namespace Canwell.OrmLite.MSAccess2003
         public override IDbConnection CreateConnection(string filePath, Dictionary<string, string> options)
         {
             var path = GetFilePath(filePath);
-            var autoCreate = options != null ? !options.ContainsKey("AutoCreateDatabase") || bool.Parse(options["AutoCreateDatabase"]) : true;
+            var autoCreate = options == null || (!options.ContainsKey("AutoCreateDatabase") || bool.Parse(options["AutoCreateDatabase"]));
 
 
             // create mdb if filePath mdb is not exist
@@ -162,14 +163,23 @@ namespace Canwell.OrmLite.MSAccess2003
             var sql = new StringBuilder();
             sql.AppendFormat("{0} {1}", GetQuotedColumnName(fieldName), fieldDefinition);
 
+            //if (autoIncrement)
+            //    sql.Append(string.Format(" {0} ", "AUTOINCREMENT"));
+
             if (isPrimaryKey)
             {
                 if (autoIncrement)
                 {
                     sql.Append(GetAutoIncrementDefinition(fieldType));
                 }
+                //else
+                //{
+
+
 
                 sql.Append(" PRIMARY KEY");
+                //}
+
             }
             else
             {
@@ -191,12 +201,30 @@ namespace Canwell.OrmLite.MSAccess2003
             return sql.ToString();
         }
 
+        public override string ToAlterColumnStatement(Type modelType, FieldDefinition fieldDef)
+        {
+            var baseString = base.ToAlterColumnStatement(modelType,fieldDef);
+
+            if (fieldDef.FieldType == typeof (int))
+            {
+                baseString = baseString.ReplaceAll("AUTOINCREMENT  PRIMARY KEY", "AUTOINCREMENT");
+            }
+            else if (fieldDef.FieldType == typeof(Guid))
+            {
+                baseString = baseString.ReplaceAll("GUID DEFAULT GenGUID()  PRIMARY KEY", " GUID DEFAULT GenGUID() ");
+            }
+
+            return baseString;
+        }
+
         public string GetAutoIncrementDefinition(Type fieldType)
         {
             if (fieldType == typeof (Guid))
                 return " DEFAULT GenGUID() ";
             else
-                return " "+ AutoIncrementDefinition +" ";
+                return string.Format(" {0} ", AutoIncrementDefinition);
+                //return " COUNTER ";
+                
         }
 
     }

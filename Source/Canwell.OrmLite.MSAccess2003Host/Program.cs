@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using Canwell.OrmLite.MSAccess2003;
 using Canwell.OrmLite.MSAccess2003Host.Dtos;
 using Canwell.OrmLite.MSAccess2003Host.Entitites;
@@ -21,6 +22,8 @@ namespace Canwell.OrmLite.MSAccess2003Host
         static void Main(string[] args)
         {
             ConnectionString = ConnectionString.Fmt(FilePath, FilePassword);
+
+            File.Delete(FilePath);
 
             var container = new Container();
 
@@ -46,9 +49,34 @@ namespace Canwell.OrmLite.MSAccess2003Host
         {
             using(var connection = container.Resolve<IDbConnectionFactory>().OpenDbConnection())
             {
-                connection.CreateTableIfNotExists<MessageEntity>();
+                connection.CreateTableIfNotExists<AutoIncrementTest1Entity>();
+                //GUID DEFAULT GenGUID()
+                //ALTER COLUMN Id AUTOINCREMENT
+                connection.AlterColumn<AutoIncrementTest3Entity>(x => x.Id);
 
-                connection.AlterColumn<MessageEntity>(entity => entity.MessageSource);
+                connection.SaveAll(new List<AutoIncrementTest3Entity>()
+                {
+                    new AutoIncrementTest3Entity()
+                    {
+                        Name = "Hans"
+                    },
+                    new AutoIncrementTest3Entity()
+                    {
+                        Name = "Wurst"
+                    },
+                    new AutoIncrementTest3Entity()
+                    {
+                        Name = "Karl"
+                    },
+                    new AutoIncrementTest3Entity()
+                    {
+                        Name = "Pupsnase"
+                    }
+                });
+
+                var entities = connection.Select<AutoIncrementTest3Entity>();
+
+                Console.WriteLine("{0}", entities);
 
             }
         }

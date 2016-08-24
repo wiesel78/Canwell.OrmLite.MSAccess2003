@@ -7,9 +7,9 @@ using ServiceStack.DataAnnotations;
 namespace Canwell.OrmLite.MSAccess2003Host.Entitites
 {
     [Alias("Message")]
-    public class MessageEntity
+    public class Message2Entity
     {
-        [PrimaryKey]
+        [AutoIncrement]
         public int Message_id { get; set; }
         public int? Reservierung_id { get; set; }
         public int? Kunde_id { get; set; }
